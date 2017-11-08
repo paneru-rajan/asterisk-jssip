@@ -1,0 +1,31 @@
+# Just apply Travis-CI for these branches
+branches:
+  only:
+  - master
+  - experimental
+
+language: node_js
+
+node_js:
+  - 6
+  - 7
+  - 8
+
+install:
+  - npm install
+
+before_script:
+  - npm install -g gulp-cli
+  - gulp devel dist
+
+script:
+  - gulp test
+
+notifications:
+  email:
+    recipients:
+      - jmillan@aliax.net
+      - ibc@aliax.net
+      - saghul@gmail.com
+    on_success: change
+    on_failure: always
